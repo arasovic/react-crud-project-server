@@ -4,11 +4,12 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./db');
 
-const users = require('./routes/user'); 
+const users = require('./routes/user');
+const tenants = require('./routes/tenants');
 
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     () => {console.log('Mongoya bağlandı') },
-    err => { console.log('Mongoya bağlanamadı'+ err)}
+    err => {console.log('Mongoya bağlanamadı'+ err)}
 );
 
 const app = express();
@@ -19,10 +20,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api/users', users);
+app.use('/api/tenants', tenants);
 
-app.get('/', function(req, res) {
-    res.send('hello');
-});
+// app.get('/', function(req, res) {
+//     res.send('hello');
+// });
 
 const PORT = process.env.PORT || 5000;
 
