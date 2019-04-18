@@ -31,17 +31,28 @@ router.post('/add', function (req, res) {
 
 
 router.get('/getAll', function (req, res) {
-    Tenant.find({},function (err, tenants) {
-        if (err){
+    Tenant.find({}, function (err, tenants) {
+        if (err) {
             res.json(err)
-        } else{
+        } else {
             let allTenants = {};
             tenants.forEach(function (tenant) {
-                allTenants[tenant.id]=tenant
+                allTenants[tenant.id] = tenant
             });
             res.send(allTenants);
         }
     })
 });
+
+router.get('/findById/:id', function (req, res) {
+    Tenant.findById(req.params.id, function (err, tenant) {
+        if (!err) {
+            res.json(tenant)
+        } else {
+            res.send(err)
+        }
+    })
+});
+
 
 module.exports = router;
