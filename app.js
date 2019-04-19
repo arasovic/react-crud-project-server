@@ -7,16 +7,20 @@ const config = require('./db');
 const users = require('./routes/user');
 const tenants = require('./routes/tenants');
 
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-    () => {console.log('Mongoya bağlandı') },
-    err => {console.log('Mongoya bağlanamadı'+ err)}
+mongoose.connect(config.DB, {useNewUrlParser: true}).then(
+    () => {
+        console.log('Mongoya bağlandı')
+    },
+    err => {
+        console.log('Mongoya bağlanamadı' + err)
+    }
 );
 
 const app = express();
 app.use(passport.initialize());
 require('./passport')(passport);
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use('/api/users', users);
