@@ -6,6 +6,7 @@ const config = require('./db');
 
 const users = require('./routes/user');
 const tenants = require('./routes/tenants');
+const tadmins = require('./routes/tadmins');
 
 mongoose.connect(config.DB, {useNewUrlParser: true}).then(
     () => {
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', users);
 app.use('/api/tenants', tenants);
+app.use('/api/tadmins', tadmins);
 
 // app.get('/', function(req, res) {
 //     res.send('hello');

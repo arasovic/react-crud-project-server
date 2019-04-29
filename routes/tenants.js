@@ -68,16 +68,24 @@ router.put('/edit/:id', function (req, res) {
 
 router.delete('/delete/:id', function (req, res) {
     Tenant.findByIdAndRemove({_id: req.params.id}, (err, tenant) => {
-        // As always, handle any potential errors:
         if (err) return res.status(500).send(err);
-        // We'll create a simple object to send back with a message and the id of the document that was removed
-        // You can really do this however you want, though.
         const response = {
-            message: "Todo successfully deleted",
+            message: "Tenant deleted",
             id: tenant._id,
             tName: tenant.tName
         };
         return res.status(200).send(response);
     });
+});
+
+router.delete('/deleteAll', function (req, res) {
+    Tenant.deleteMany({}, (err, tenant) => {
+        if (err) return res.status(500).send(err);
+        const response = {
+            message: "Tenants deleted"
+        };
+        return res.status(200).send(response);
+    })
+
 });
 module.exports = router;
