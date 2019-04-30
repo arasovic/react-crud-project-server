@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const today = require('../Date');
 
 const Schema = mongoose.Schema;
 
@@ -8,15 +9,14 @@ const TadminSchema = new Schema({
         type: String,
         required: true
     },
-
-    tNameID: {
-        type: [Schema.Types.ObjectId],
+    tenantInfo: {
+        type: [Schema.Types.Mixed],
         required: false
     },
 
     date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: today
     }
 });
 

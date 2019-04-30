@@ -20,7 +20,8 @@ router.post('/add', function (req, res) {
         } else {
             const newTenant = new Tenant({
                 tName: req.body.tName,
-                tStatus: req.body.tStatus
+                tStatus: req.body.tStatus,
+                adminInfo: req.body.adminInfo
             });
             newTenant.save().then(tenant => {
                 res.json(tenant)
@@ -60,7 +61,7 @@ router.put('/edit/:id', function (req, res) {
             return res.send(err)
         }
         if (!tenant) {
-            return res.status(404).send('Bookmark not found for user');
+            return res.status(404).send('not found');
         }
         res.status(200).json(tenant);
     });

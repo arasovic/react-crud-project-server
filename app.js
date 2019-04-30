@@ -31,7 +31,6 @@ app.use('/api/tadmins', tadmins);
 // app.get('/', function(req, res) {
 //     res.send('hello');
 // });
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

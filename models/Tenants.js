@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const today = require('../Date');
 const Schema = mongoose.Schema;
 
 const TenantSchema = new Schema({
@@ -7,15 +7,18 @@ const TenantSchema = new Schema({
         type: String,
         required: true
     },
-
     tStatus: {
         type: Boolean,
         required: true
     },
+    adminInfo: {
+        type: [Schema.Types.Mixed],
+        required: false
+    },
 
     date: {
-        type: Date,
-        default: Date.now
+        type: String,
+        default: today
     }
 
 });
